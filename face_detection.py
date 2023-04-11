@@ -11,7 +11,7 @@ def face_detection(img,upsample_times=1):
     # will make everything bigger and allow us to detect more faces.
     detector = dlib.get_frontal_face_detector()
     faces = detector(img, upsample_times)
-    print("face " , faces)
+    # print("face " , faces)
     return faces
 
 PREDICTOR_PATH = 'models/shape_predictor_68_face_landmarks.dat'
@@ -24,7 +24,7 @@ def face_points_detection(img, bbox:dlib.rectangle):
     # loop over the 68 facial landmarks and convert them
     # to a 2-tuple of (x, y)-coordinates
     coords = np.asarray(list([p.x, p.y] for p in shape.parts()), dtype=int)
-    print(coords)
+    # print(coords)
     # return the array of (x, y)-coordinates
     return coords
 
@@ -36,9 +36,9 @@ def select_face(im, r=10, choose=True):
 
     if len(faces) == 1 or not choose:
         idx = np.argmax([(face.right() - face.left()) * (face.right() - face.top()) for face in faces])
-        print(idx)
+        # print(idx)
         bbox = faces[idx]
-        print("2")
+        # print("2")
     else:
         bbox = []
         print("3")
